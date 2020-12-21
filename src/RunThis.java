@@ -5,16 +5,30 @@ import java.util.*;
 public class RunThis {
 
     public static void main(String[] args) throws FileNotFoundException {
-        //scanner file location, make generic later
-        Scanner sc = new Scanner(new File("C:\\Users\\andrew.vannus\\Downloads\\takeout-20201216T161107Z-001\\Takeout\\Google Play Music\\Playlists\\Thumbs Up\\$30k Mink.csv"));
 
-        //returns a SongData file for each file containing data for each song
-        SongData song1 = fileExtract(sc);
+        File[] fileNames = new File("C:\\Users\\andrew.vannus\\Downloads\\takeout-20201216T161107Z-001\\Takeout\\Google Play Music\\Playlists\\Thumbs Up").listFiles();
+
+        Scanner sc;
+        List<SongData> songDataArrayList = new ArrayList<SongData>();
+        int i = 0;
+
+        assert fileNames != null;
+        for(File f: fileNames){
+            sc = new Scanner(f);
+            songDataArrayList.add(new SongData(fileExtract(sc)));
+            System.out.println(i);
+            i++;
+        }
+        for(SongData s : songDataArrayList){
+            System.out.println(s.toString());
+        }
 
         System.out.println("end of program");
     }
 
-    public static SongData fileExtract(Scanner sc) {
+
+
+    public static List<String> fileExtract(Scanner sc) {
         String[] csvLines = new String[2]; //There should be 2 lines of data, one for the column titles and a second one for the column values
         for(int i=0; i<csvLines.length; i++) { //fill temp array with those 2 lines of data
             csvLines[i] = sc.nextLine();
@@ -25,8 +39,9 @@ public class RunThis {
 
         List<String> csvValues = commaDelimit(csvLines); //convert from 2 lines of data to discrete data
 
-        sanityCheck(csvValues);
-        return null;
+        sanityCheck(csvValues); //double check that random values are correct
+
+        return csvValues;
     }
 
     public static List<String> commaDelimit(String[] inputStrings){ //TODO optimize?
@@ -51,8 +66,10 @@ public class RunThis {
             }
         }
         if(!csvValues.get(14).equals("\"\"")){
-            System.out.println("sanityCheckFailure: Removed Value vs. " +csvValues.get(14));
+            System.out.println("sanityCheckFailure: Removed vs. " +csvValues.get(14));
         }
+
+        System.out.println(csvValues.get(8));
     }
 
 }
