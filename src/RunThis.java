@@ -37,6 +37,7 @@ public class RunThis {
             System.out.println("CSV FILE HAS >2 LINES");
         }
 
+        //https://stackoverflow.com/questions/1757065/java-splitting-a-comma-separated-string-but-ignoring-commas-in-quotes
         List<String> csvValues = commaDelimit(csvLines); //convert from 2 lines of data to discrete data
 
         sanityCheck(csvValues); //double check that random values are correct
