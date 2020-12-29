@@ -6,12 +6,12 @@ public class SongData {
     String album;
     String artist;
     String duration;
-    int rating;
-    int playCount;
+    String rating;
+    String playCount;
     String removed;
-    int playlistIndex;
+    String playlistIndex;
 
-    SongData(String title, String album, String artist, String removed, String duration, int rating, int playCount, int playlistIndex) {
+    SongData(String title, String album, String artist, String removed, String duration, String rating, String playCount, String playlistIndex) {
         this.title = title;
         this.album = album;
         this.artist = artist;
@@ -27,10 +27,10 @@ public class SongData {
         this.album = stringList.get(9);
         this.artist = stringList.get(10);
         this.duration = stringList.get(11);
-        this.rating = custParse(stringList.get(12));
-        this.playCount = custParse(stringList.get(13));
+        this.rating = stringList.get(12);
+        this.playCount = stringList.get(13);
         this.removed = stringList.get(14);
-        this.playlistIndex = custParse(stringList.get(15));
+        this.playlistIndex = stringList.get(15);
     }
 
     public int custParse(String s) {
@@ -49,5 +49,16 @@ public class SongData {
                 ", playCount=" + playCount +
                 ", playlistIndex=" + playlistIndex +
                 '}';
+    }
+
+    public String getDataAsCSV(){
+        return "\"" + title + "\", \"" +
+                album + "\", \"" +
+                artist + "\", \"" +
+                removed + "\", \"" +
+                duration + "\", \"" +
+                rating + "\", \"" +
+                playCount + "\", \"" +
+                playlistIndex +"\"";
     }
 }
