@@ -51,14 +51,19 @@ public class SongData {
                 '}';
     }
 
+    public static String getDataAsCSVTitle(){
+        return "Title, Album, Artist, Removed, Duration, Rating, Play Count, Playlist Index\n";
+    }
+
     public String getDataAsCSV(){
-        return "\"" + title + "\", \"" +
-                album + "\", \"" +
-                artist + "\", \"" +
-                removed + "\", \"" +
-                duration + "\", \"" +
-                rating + "\", \"" +
-                playCount + "\", \"" +
-                playlistIndex +"\"";
+        return title + "," +
+                album  + "," +
+                artist + "," +
+                removed + "," +
+                duration  + "," +
+                rating  + "," +
+                playCount  + "," +
+                playlistIndex  + "," +
+                "\n";
     }
 }
